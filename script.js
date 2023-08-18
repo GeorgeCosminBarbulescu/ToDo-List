@@ -23,8 +23,10 @@ const renderTodo = function (todo) {
   node.setAttribute('data-key', todo.id);
   node.innerHTML = `
     <input id="${todo.id}" type="checkbox"/>
-    <label for="${todo.id}" class="tick js-tick"></label>
+    <span class="created-at">Date, time: ${todo.createdAt}</span>
+    <br>
     <span>${todo.text}</span>
+    <label for="${todo.id}" class="tick js-tick"></label>
     <button class="delete-todo js-delete-todo">
     <svg><use href="#delete-icon"></use></svg>
     </button>
@@ -45,6 +47,7 @@ const addTodo = function (text) {
     text,
     checked: false,
     id: Date.now(),
+    createdAt: new Date().toLocaleString(), // Add current date and time
   };
 
   todoItems.push(todo);
